@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - main
+      - feature/add-github-actions
+    paths:
+      - 'index.html'
+
+  pull_request:
+    branches:
+      - main
+      - feature/add-github-actions
     paths:
       - 'index.html'
 
@@ -28,4 +36,5 @@ jobs:
           path: .
 
       - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
         uses: actions/deploy-pages@v4
